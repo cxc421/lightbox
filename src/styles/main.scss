@@ -21,10 +21,6 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
     sans-serif;
   color: black;
   position: relative;
-
-  &.show-lightbox {
-    overflow: hidden;
-  }
 }
 
 /*
@@ -197,7 +193,7 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
  */
 
 .lightbox-wrapper {
-  position: absolute;
+  position: fixed;
   z-index: 999;
   background: rgba(0, 0, 0, .9);
   width: 100%;

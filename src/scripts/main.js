@@ -36,17 +36,14 @@ const rightIcon = document.querySelector('.right-icon');
 const cancelIcon = document.querySelector('.cancel-icon');
 const app = document.querySelector('.app');
 const lightboxWrapper = document.querySelector('.lightbox-wrapper');
-const SHOWBOX_CLASS = 'show-lightbox';
 
 function showBox(boxIdx) {
   selectIdx = boxIdx;
   update();
-  app.classList.add(SHOWBOX_CLASS);
   lightboxWrapper.style.display = 'block';
 }
 
 cancelIcon.addEventListener('click', function() {
-  app.classList.remove(SHOWBOX_CLASS);
   lightboxWrapper.style.display = 'none';
 });
 
