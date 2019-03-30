@@ -77,6 +77,7 @@ function update() {
       img.style.display = 'none';
     }
   });
+  resize();
 }
 
 // update();
@@ -94,13 +95,6 @@ function resize() {
 
   const { naturalWidth, naturalHeight } = hideImg;
   let { clientHeight, clientWidth } = document.body;
-
-  // console.log({
-  //   naturalWidth,
-  //   naturalHeight,
-  //   clientWidth,
-  //   clientHeight
-  // });
 
   if (
     clientWidth < 1024 &&
