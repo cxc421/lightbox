@@ -1,12 +1,12 @@
 const boxArea = document.querySelector('.img-box-area');
 const sliderArea = document.querySelector('.lightbox-slider-area');
 const images = [
-  'erik-mclean-1112469-unsplash.jpg',
-  'jeremy-vessey-373593-unsplash.jpg',
-  'erik-mclean-1118027-unsplash.jpg',
-  'erik-mclean-1412876-unsplash.jpg',
-  'peter-lloyd-609343-unsplash.jpg',
-  'jiri-sifalda-35036-unsplash.jpg'
+  'fox-01.jpg',
+  'fox-02.jpg',
+  'fox-03.jpg',
+  'fox-04.jpg',
+  'fox-05.jpg',
+  'fox-06.jpg'
 ];
 
 // init main pages
