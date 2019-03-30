@@ -21,15 +21,16 @@ for (let i = 0; i < images.length; i++) {
 }
 
 // init main pages
-// const slider = document.querySelector('.slider');
-// for (let i = 0; i < images.length; i++) {
-//   const img = document.createElement('img');
-//   img.src = './assets/images/' + images[i];
-//   slider.appendChild(img);
-// }
+for (let i = 0; i < images.length; i++) {
+  const img = document.createElement('img');
+  img.className = 'hide-img';
+  img.id = 'hide-img-' + i;
+  img.src = './assets/images/' + images[i];
+  sliderArea.prepend(img);
+}
 
 //
-let selectIdx = 3;
+let selectIdx = 0;
 const leftIcon = document.querySelector('.left-icon');
 const rightIcon = document.querySelector('.right-icon');
 const cancelIcon = document.querySelector('.cancel-icon');
@@ -42,7 +43,6 @@ function showBox(boxIdx) {
   update();
   app.classList.add(SHOWBOX_CLASS);
   lightboxWrapper.style.display = 'block';
-  console.log('haha');
 }
 
 cancelIcon.addEventListener('click', function() {
@@ -72,23 +72,14 @@ const lightboxPages = document.querySelectorAll('.lightbox-page');
 const hideImg = document.querySelector('.hide-img');
 
 function update() {
-  hideImg.src = './assets/images/' + images[selectIdx];
   lightboxPages.forEach(dom => (dom.textContent = selectIdx + 1));
-  // lightboxPage.textContent = selectIdx + 1;
-
-  hideImg.onload = () => {
-    // console.log(hideImg.naturalHeight);
-    console.log('onload');
-    resize();
-  };
-  // document.querySelector('.hide-img').onload = function() {
-  //   const imgDOMs = slider.querySelectorAll('img');
-  //   let left = 0;
-  //   for (let i = 0; i < selectIdx; i++) {
-  //     left += imgDOMs[i].clientWidth;
-  //   }
-  //   slider.style.left = -1 * left + 'px';
-  // };
+  sliderArea.querySelectorAll('.hide-img').forEach(img => {
+    if (img.id === 'hide-img-' + selectIdx) {
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+  });
 }
 
 // update();
@@ -99,28 +90,29 @@ window.addEventListener('orientationchange', function() {
 
 let defaultOrientation = null;
 function resize() {
-  if (!hideImg.naturalWidth) {
+  const hideImg = sliderArea.querySelector('#hide-img-' + selectIdx);
+  if (!hideImg || !hideImg.naturalWidth) {
     return;
   }
 
   const { naturalWidth, naturalHeight } = hideImg;
   let { clientHeight, clientWidth } = document.body;
 
-  console.log({
-    naturalWidth,
-    naturalHeight,
-    clientWidth,
-    clientHeight
-  });
+  // console.log({
+  //   naturalWidth,
+  //   naturalHeight,
+  //   clientWidth,
+  //   clientHeight
+  // });
 
   if (
     clientWidth < 1024 &&
     clientWidth / clientHeight > naturalWidth / naturalHeight
   ) {
     document.body.classList.add('mobile-horizontal');
-    console.log('add');
+    // console.log('add');
   } else {
     document.body.classList.remove('mobile-horizontal');
-    console.log('remove');
+    // console.log('remove');
   }
 }
