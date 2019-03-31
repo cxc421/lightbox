@@ -396,6 +396,18 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
   }
 }
 
+@media(max-width: 374px) {
+  .lightbox-text-quote>* {
+    font-size: 23px !important;
+  }
+}
+
+@media(max-width: 359px) {
+  .lightbox-text-quote>* {
+    font-size: 17px !important;
+  }
+}
+
 .mobile-horizontal {
   .lightbox-container {
     height: 100% !important;
