@@ -14,6 +14,10 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
   display: table;
 }
 
+.noselect {
+  user-select: none;
+}
+
 .app {
   width: 100%;
   height: 100%;
@@ -60,6 +64,7 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
 
   width: calc(100% - #{$titleDefaultLeft} - #{$leftRightMargin} - 125px);
   @extend .clearfix;
+  @extend .noselect;
 }
 
 .img-box {
@@ -292,7 +297,7 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
   background: peru;
   border: solid 16px white;
   border-radius: 6px;
-  // height: 100%;
+  @extend .noselect;
 
   .left-icon,
   .right-icon,
