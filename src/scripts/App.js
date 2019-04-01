@@ -5,10 +5,10 @@ const imgFolderPath = './assets/images/';
 const imgNames = [
   'fox-02.jpg',
   'fox-04.jpg',
-  'fox-01.jpg',
-  'fox-06.jpg',
   'fox-05.jpg',
-  'fox-03.jpg'
+  'fox-01.jpg',
+  'fox-03.jpg',
+  'fox-06.jpg'
 ];
 const imgSmallPaths = imgNames.map(
   imgName => imgFolderPath + imgName.split('.').join('-s.')
