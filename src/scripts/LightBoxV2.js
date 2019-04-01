@@ -72,9 +72,9 @@ class LightBoxV2 {
       elm.classList.add('lightbox-icons-show');
     });
   }
-  toLoadingStatus() {
+  toLoadingStatus(dontShowLoadingIcon) {
     const hideProperties = ['image', 'leftIcon', 'rightIcon', 'cancelIcon'];
-    const showProperties = ['loadingIcon'];
+    const showProperties = dontShowLoadingIcon ? [] : ['loadingIcon'];
     this.toggleDisplayElems(hideProperties, showProperties);
   }
   toShowImageStatus() {
@@ -144,10 +144,14 @@ class LightBoxV2 {
   }
   show(boxIdx) {
     this.changeBox(boxIdx);
-    this.elms.container.style.display = 'block';
+    // this.elms.container.style.display = 'block';
+    this.elms.container.classList.add('lightbox-show');
   }
   hide() {
-    this.elms.container.style.display = 'none';
+    // this.elms.container.style.display = 'none';
+    this.toLoadingStatus(true);
+    this.boxIdx = -1;
+    this.elms.container.classList.remove('lightbox-show');
   }
 }
 

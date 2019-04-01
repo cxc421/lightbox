@@ -11,17 +11,25 @@ $mobileSize: 1023px;
 
 .lightbox-v2 {
   position: fixed;
-  z-index: $lightboxContainerZindex;
   background: rgba(0, 0, 0, .9);
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  display: none;
+  // display: none;
   padding: 6.64%;
+  transition: opacity 800ms;
+  opacity: 0;
+  z-index: -1;
+
+  &.lightbox-show {
+    z-index: $lightboxContainerZindex;
+    opacity: 1;
+  }
+
 
   @media (max-width: $mobileSize),
-    (orientation: portrait) {
+  (orientation: portrait) {
     padding: 20px;
   }
 
@@ -54,6 +62,7 @@ $mobileSize: 1023px;
       width: 100%;
       height: 20%;
       flex-direction: row;
+      justify-content: center;
       align-items: center;
       z-index: $lightboxTextZindex;
       padding-right: 0;
@@ -99,15 +108,20 @@ $mobileSize: 1023px;
         font-size: 24px;
         font-weight: bold;
 
+        @media(max-width: 568px) {
+          font-size: 18px;
+          // line-height: 18px;
+        }
+
         &:nth-child(2) {
           font-size: 16px;
           font-style: italic;
           margin-top: 24px;
-        }
 
-        @media(max-width: 568px) {
-          font-size: 18px;
-          line-height: 18px;
+          @media (max-width: $mobileSize),
+            (orientation: portrait) {
+            margin-top: 14px;
+          }
         }
       }
     }
@@ -131,11 +145,11 @@ $mobileSize: 1023px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 50%;
-      height: 50%;
+      width: 80%;
+      height: 80%;
       max-width: 100%;
       max-height: 100%;
-      border: solid 16px white;
+      border: solid 10px white;
       background: white;
       border-radius: 6px;
       overflow: hidden;
@@ -178,7 +192,7 @@ $mobileSize: 1023px;
         font-size: 48px;
 
         &:hover {
-          transform: translateY(-50%) scale(1.3);
+          transform: translateY(-50%) scale(2);
         }
       }
 
@@ -189,7 +203,7 @@ $mobileSize: 1023px;
         font-size: 48px;
 
         &:hover {
-          transform: translateY(-50%) scale(1.3);
+          transform: translateY(-50%) scale(2);
         }
       }
 
@@ -201,7 +215,7 @@ $mobileSize: 1023px;
         text-shadow: 4px 2px 5px rgba(0, 0, 0, .9);
 
         &:hover {
-          transform: scale(1.2);
+          transform: scale(1.3);
         }
       }
     }
