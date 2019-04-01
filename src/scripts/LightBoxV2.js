@@ -122,11 +122,15 @@ class LightBoxV2 {
     this.toLoadingStatus();
 
     // load image
+    const loadStartTime = performance.now();
     image.onload = () => {
+      const loadEndTime = performance.now();
+      const delay = loadEndTime - loadStartTime < 500 ? 500 : 1;
+
       setTimeout(() => {
         this.adjustImageSize();
         this.toShowImageStatus();
-      }, 500);
+      }, delay);
     };
     image.onerror = () => {
       console.error('load image failed');
