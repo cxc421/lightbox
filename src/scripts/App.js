@@ -1,4 +1,5 @@
-import LightBox from './LightBox';
+// import LightBox from './LightBox';
+import LightBox from './LightBoxV2';
 
 const imgFolderPath = './assets/images/';
 const imgNames = [
@@ -13,14 +14,11 @@ const imgSmallPaths = imgNames.map(
   imgName => imgFolderPath + imgName.split('.').join('-s.')
 );
 const imgBigPaths = imgNames.map(imgName => imgFolderPath + imgName);
-console.log(imgSmallPaths);
 
 class App {
   constructor() {
     this.initPreviewBox();
-    console.log('A');
     this.lightBox = new LightBox(imgBigPaths);
-    console.log('B');
   }
   initPreviewBox() {
     const boxArea = document.querySelector('.img-box-area');

@@ -422,3 +422,215 @@ $titleDefaultLeft: $leftRightMargin+$titleHeight;
     width: auto !important;
   }
 }
+
+/*
+ *  Lightbox V2
+ */
+
+$lightboxTextAreaWidth: 240px;
+$lightboxContainerZindex: 999;
+$lightboxIconsHideZindex: 1000;
+$lightboxIconsShowZindex: 1001;
+$lightboxTextZindex: 1002;
+$mobileSize: 1023px;
+
+.lightbox-v2 {
+  position: fixed;
+  z-index: $lightboxContainerZindex;
+  background: rgba(0, 0, 0, .9);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 6.64%;
+
+  @media (max-width: $mobileSize),
+    (orientation: portrait) {
+    padding: 20px;
+  }
+
+  >* {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+    // background: pink;
+    @extend .clearfix;
+  }
+
+  .lightbox-v2-text-area {
+    float: left;
+    position: relative;
+    height: 100%;
+    width: $lightboxTextAreaWidth;
+    // background: lightblue;
+    padding-right: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+
+    @media (max-width: $mobileSize),
+      (orientation: portrait) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 20%;
+      flex-direction: row;
+      align-items: center;
+      z-index: $lightboxTextZindex;
+      padding-right: 0;
+      padding-top: 20px;
+    }
+
+    .lightbox-v2-text-page {
+      flex-shrink: 0;
+      padding-right: 20px;
+
+      >* {
+        font-size: 72px;
+        font-weight: bold;
+        display: inline-block;
+        width: 41px;
+        text-align: center;
+        vertical-align: baseline;
+
+        &:nth-child(2) {
+          font-weight: normal;
+          font-size: 36px;
+          width: 34px;
+        }
+
+        @media(max-width: 568px),
+        (orientation: portrait) {
+          font-size: 66px;
+          width: 36px;
+
+          &:nth-child(2) {
+            font-weight: normal;
+            font-size: 30px;
+            width: 34px;
+          }
+        }
+      }
+    }
+
+    .lightbox-v2-text-quote {
+
+      &>* {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+
+        &:nth-child(2) {
+          font-size: 16px;
+          font-style: italic;
+          margin-top: 24px;
+        }
+
+        @media(max-width: 568px) {
+          font-size: 18px;
+          line-height: 18px;
+        }
+      }
+    }
+  }
+
+  .lightbox-v2-image-area {
+    float: left;
+    position: relative;
+    width: calc(100% - #{$lightboxTextAreaWidth});
+    height: 100%;
+    // background: lightgreen;
+
+    @media (max-width: $mobileSize),
+      (orientation: portrait) {
+      width: 100%;
+      height: 80%;
+    }
+
+    .lightbox-v2-image-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 50%;
+      max-width: 100%;
+      max-height: 100%;
+      border: solid 16px white;
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: width 500ms, height 500ms;
+      @extend .noselect;
+
+      .lightbox-v2-loading-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #555;
+        opacity: 0;
+        // transition: opacity 200ms;
+      }
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 300ms;
+      }
+
+      .left-icon,
+      .right-icon,
+      .cancel-icon {
+        position: absolute;
+        color: white;
+        cursor: pointer;
+        opacity: 0.75;
+        transition: opacity 300ms;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .left-icon {
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 48px;
+      }
+
+      .right-icon {
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        font-size: 48px;
+      }
+
+      .cancel-icon {
+        top: 6px;
+        right: 6px;
+        font-size: 36px;
+        opacity: 1;
+      }
+    }
+
+    .lightbox-icons-hide {
+      transition-duration: 0ms !important;
+      opacity: 0 !important;
+      z-index: $lightboxIconsHideZindex !important;
+    }
+
+    .lightbox-icons-show {
+      opacity: 1 !important;
+      z-index: $lightboxIconsShowZindex !important;
+    }
+  }
+}

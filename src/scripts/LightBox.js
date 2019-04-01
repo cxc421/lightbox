@@ -28,7 +28,11 @@ class LightBox {
       'resize',
       deBounce(this.adjustSliderSize.bind(this), 50)
     );
-    // window.addEventListener('resize', this.adjustSliderSize.bind(this));
+    lightBoxWrapper.addEventListener('click', e => {
+      if (e.target === lightBoxWrapper) {
+        this.hide();
+      }
+    });
   }
   initSlider(sliderArea) {
     this.imgPaths.forEach((imgPath, idx) => {
