@@ -168,11 +168,7 @@ $mobileSize: 1023px;
         color: white;
         cursor: pointer;
         opacity: 0.75;
-        transition: opacity 300ms;
-
-        &:hover {
-          opacity: 1;
-        }
+        transition: opacity 300ms, transform 600ms;
       }
 
       .left-icon {
@@ -180,6 +176,10 @@ $mobileSize: 1023px;
         top: 50%;
         transform: translateY(-50%);
         font-size: 48px;
+
+        &:hover {
+          transform: translateY(-50%) scale(1.3);
+        }
       }
 
       .right-icon {
@@ -187,6 +187,10 @@ $mobileSize: 1023px;
         right: 0;
         transform: translateY(-50%);
         font-size: 48px;
+
+        &:hover {
+          transform: translateY(-50%) scale(1.3);
+        }
       }
 
       .cancel-icon {
@@ -194,6 +198,11 @@ $mobileSize: 1023px;
         right: 6px;
         font-size: 36px;
         opacity: 1;
+        text-shadow: 4px 2px 5px rgba(0, 0, 0, .9);
+
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
 
