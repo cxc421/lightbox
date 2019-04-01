@@ -89,7 +89,7 @@ class LightBoxV2 {
     let width, height;
 
     if (!naturalHeight || !naturalWidth) {
-      console.error('adjustImageSize: invalid natural size');
+      // console.log('no image, neglect');
       return;
     }
 

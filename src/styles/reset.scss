@@ -28,3 +28,13 @@ h5 {
   margin: 0px;
   padding: 0;
 }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.noselect {
+  user-select: none;
+}
