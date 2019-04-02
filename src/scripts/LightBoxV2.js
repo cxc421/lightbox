@@ -48,6 +48,20 @@ class LightBoxV2 {
     textPageArea.addEventListener('click', stopPropagation);
     textQuoteArea.addEventListener('click', stopPropagation);
     container.addEventListener('click', this.hide.bind(this));
+
+    this.preloadImags();
+  }
+  preloadImags(idx) {
+    idx = idx || 0;
+    if (this.imgPaths && this.imgPaths.length > idx) {
+      const img = new Image();
+      img.onload = () => {
+        console.log('Image -' + idx + ', complete!');
+        this.preloadImags(idx + 1);
+      };
+      console.log('Try to preload:' + this.imgPaths[idx]);
+      img.src = this.imgPaths[idx];
+    }
   }
   toNextBox() {
     const boxIdx = this.boxIdx < this.imgPaths.length - 1 ? this.boxIdx + 1 : 0;
@@ -119,23 +133,27 @@ class LightBoxV2 {
     if (boxIdx === this.boxIdx) return;
 
     const { image, totalPage, curPage } = this.elms;
-    this.toLoadingStatus();
 
-    // load image
-    const loadStartTime = performance.now();
+    // 先顯示空白
+    this.toLoadingStatus(true);
+    // 超過 100ms 再顯示 loading icon
+    const key = setTimeout(() => this.toLoadingStatus(false));
+
     image.onload = () => {
-      const loadEndTime = performance.now();
-      const delay = loadEndTime - loadStartTime < 500 ? 500 : 1;
+      const delay = 200;
 
+      this.adjustImageSize();
+      clearTimeout(key);
       setTimeout(() => {
-        this.adjustImageSize();
         this.toShowImageStatus();
       }, delay);
     };
     image.onerror = () => {
       console.error('load image failed');
+      clearTimeout(key);
     };
     image.src = this.imgPaths[boxIdx];
+
     // update boxId
     this.boxIdx = boxIdx;
     // update texts
